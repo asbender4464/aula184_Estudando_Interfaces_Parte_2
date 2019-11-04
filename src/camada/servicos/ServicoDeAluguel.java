@@ -9,14 +9,14 @@ public class ServicoDeAluguel {
 	private Double precoPorHora;
 	private Double precoPorDia;
 	
-	//Estabelecendo a associação, de acordo com o diagrama UML.
-	private ServicoImpostoBrasil servicoImpostoBrasil;
+	//Estabelecendo a associação com a 'Classe ServicoImposto', que é uma 'interface genérica'.
+	private ServicoImposto servicoImposto;
 	
 	//Construtor com argumentos
-	public ServicoDeAluguel(Double precoPorHora, Double precoPorDia, ServicoImpostoBrasil servicoImpostoBrasil) {
+	public ServicoDeAluguel(Double precoPorHora, Double precoPorDia, ServicoImposto servicoImposto) {
 		this.precoPorHora = precoPorHora;
 		this.precoPorDia = precoPorDia;
-		this.servicoImpostoBrasil = servicoImpostoBrasil;
+		this.servicoImposto = servicoImposto;
 	}
 	
 	//Método 'processarNotaFiscal'. Aplica-se aqui a Regra de Negócio.
@@ -38,7 +38,7 @@ public class ServicoDeAluguel {
 		}
 		
 		//Calculando o valor do imposto
-		double imposto = servicoImpostoBrasil.totalImposto(pagamentoBasico);
+		double imposto = servicoImposto.totalImposto(pagamentoBasico);
 		
 		//Tendo-se calculado o 'valor básico de pagamento' e o 'imposto', emite-se a NF, ou seja, é possível a
 		//instanciação do objeto 'NotaFiscal'.
